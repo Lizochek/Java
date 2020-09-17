@@ -1,3 +1,5 @@
+package lab1;
+
 public class Factorial {
     static int Fact(int n){
         int first = 1;
