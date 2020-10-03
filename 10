@@ -1,0 +1,53 @@
+package LAB9;
+import java.awt.Dimension;
+import java.util.Locale;
+import javax.swing.*;
+
+public class Application {
+
+    public static void createGUI()
+    {
+        JFrame frame = new JFrame("Application");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel label = new JLabel("lab 10");
+        JPanel panel = new JPanel();
+        panel.add(label);
+        JButton a = new JButton("Значение a");
+        panel.add(a);
+        a.setBounds(40,90,85,20);
+      //  a.setSize(600, 800);
+        JButton b = new JButton("Значение b");
+        panel.add(b);
+        b.setBounds(40,390,85,20);
+       // b.setSize(600, 800);
+        JButton res = new JButton("Результат");
+        panel.add(b);
+        JButton plus = new JButton("+");
+        panel.add(plus);
+        JButton minus = new JButton("-");
+        panel.add(minus);
+        JButton multiply = new JButton("*");
+        panel.add(multiply);
+        JButton divide = new JButton("/");
+        panel.add(divide);
+
+        frame.getContentPane().add(panel);
+        frame.setBounds(40,90,85,20);
+        frame.setSize(600, 800);
+        frame.setVisible(true);
+
+        //frame.setLayout(null);
+
+    }
+
+    public static void main(String[] args)
+    {
+
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createGUI();
+            }
+        });
+    }
+}
