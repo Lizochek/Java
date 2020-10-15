@@ -12,7 +12,7 @@ import javax.swing.JPanel;
     public class JCanvas extends JPanel{
 
         private BufferedImage[][] ims;
-            public static int side=32;
+            public static int side=100;
 
         public JCanvas()  {
 
@@ -23,7 +23,7 @@ import javax.swing.JPanel;
                 {
                   for(int j=0;j<3;j++)
                   {
-                      ims[i][j] = ImageIO.read(new File("img\\empty.jpg"));
+                      ims[i][j] = ImageIO.read(new File("img\\поле51.jpg"));
                   }
                 }
 
@@ -51,13 +51,13 @@ import javax.swing.JPanel;
             try {
                 switch (type) {
                     case CROSS:
-                        ims[y][x] = ImageIO.read(new File("img\\cros.jpg"));
+                        ims[y][x] = ImageIO.read(new File("img\\cross1.jpg"));
                         break;
                     case CIRCLE:
-                        ims[y][x] = ImageIO.read(new File("img\\circle.jpg"));
+                        ims[y][x] = ImageIO.read(new File("img\\circle1.jpg"));
                         break;
                     case EMPTY:
-                        ims[y][x] = ImageIO.read(new File("img\\empty.jpg"));
+                        ims[y][x] = ImageIO.read(new File("img\\поле51.jpg"));
                         break;
 
                 }

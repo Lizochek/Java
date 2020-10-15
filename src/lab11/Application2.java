@@ -34,7 +34,7 @@ public class Application2 extends JFrame {
                 redrawMap();
             }
         });
-        setSize(200,200);
+        setSize(400,400);
        // setLayout(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
