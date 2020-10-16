@@ -1,4 +1,5 @@
-/*package lab10;
+package lab10;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Locale;
@@ -8,128 +9,100 @@ public class Application {
     public static void main(String[] args) {
 
 
-        AplFrame frame = new AplFrame();
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
+        frame.setTitle("Application");
+        JPanel panel = getButtonPanel();
+        frame.add(panel);
         frame.setSize(500, 500);
+        frame.pack();
 
-
+        frame.setVisible(true);
     }
-}
-     class AplFrame extends JFrame {
-        public AplFrame() {
-            setTitle("Application");
-            AplPanel panel = new AplPanel();
-            add(panel);
-            pack();
-        }
 
-        }
-
-
-    class AplPanel extends JPanel {
-    public AplPanel() {
-        setLayout(new BorderLayout());
+    private static JPanel getButtonPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 1));
 
         JTextField firstValue = new JTextField();
         JTextField secondValue = new JTextField();
-        JLabel Result = new JLabel();
+        JLabel result = new JLabel("Ответ");
 
-        ActionListener command = new CommandAction();
+        ActionListener command = new CommandAction(firstValue, secondValue, result);
 
-        panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 4));
+        JPanel gridPanel = new JPanel();
+        gridPanel.setLayout(new GridLayout(1, 4));
 
-        addButton("+", command);
-        addButton("-", command);
-        addButton("*", command);
-        addButton("/", command);
+        addButton("+", command, gridPanel);
+        addButton("-", command, gridPanel);
+        addButton("*", command, gridPanel);
+        addButton("/", command, gridPanel);
 
-
-        add(panel, BorderLayout.CENTER);
-
+        panel.add(firstValue);
+        panel.add(gridPanel);
+        panel.add(secondValue);
+        panel.add(result);
+        panel.setSize(400,400);
+        return panel;
 
     }
-        private void addButton(String label, ActionListener listener) {
-            JButton button = new JButton(label);
-            button.addActionListener(listener);
-            panel.add(button);
-        }
-        private class CommandAction implements ActionListener
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                String command = event.getActionCommand();
-                if(start)
-                {
-                    if(command.equals("-"))
-                    {
-                        display.setText(command);
-                        start = false;
-                    }
-                    else lastCommand = command;
-                }
-                else
-                {
-                    calculate(Double.parseDouble(display.getText()));
-                    lastCommand = command;
-                    start=true;
-                }
-            }
-        }
-        public void calculate(double x)
-        {
 
-        }
-        switch () {
-                    case "+":
-                        result = firstOperand + secondOperand;
-                        break;
-                    case "-":
-                        result = firstOperand - secondOperand;
-                        break;
-                    case "*":
-                        result = firstOperand * secondOperand;
-                        break;
-                    case "/":
-                        if(secondOperand != 0)
-                            result = firstOperand / secondOperand;
-                        break;
-                    default:
-                        lResult.setText("Undefined operation!");
-                        break;
-                }
-                if(Double.isNaN(result)){
-                    Result.setText("Disallowed operation!");
-                } else{
-                    int digit;
-                    String size = "%.0f";
-                    for(digit = 4; digit > 0; digit--){
-                        if(Math.round(result * Math.pow(10, digit)) % 10 != 0){
-                            size = "%." + digit + "f";
-                            break;
-                        }
-                    }
-                    Result.setText(String.format(Locale.US, size, result));
-                }
-            }else {
-            Result.setText("Invalid operand!");
-        }
-        }
-                }
-                }
-            }
-        }
-
-    private void addButton(String label, ActionListener listener) {
+    private static void addButton(String label, ActionListener listener, JPanel panel) {
         JButton button = new JButton(label);
         button.addActionListener(listener);
         panel.add(button);
     }
+}
 
-        private JButton display;
-        private JPanel panel;
-        private boolean start;
+class CommandAction implements ActionListener {
+    private JTextField firstField;
+    private JTextField secondField;
+    private JLabel resultField;
+
+    public CommandAction(JTextField a, JTextField b, JLabel c) {
+        firstField = a;
+        secondField = b;
+        resultField = c;
+    }
+
+    public void actionPerformed(ActionEvent event) {
+        double firstText, secondText, result = 0;
+        try {
+
+            firstText = Double.parseDouble(firstField.getText());
+            secondText = Double.parseDouble(secondField.getText());
+
+            switch (((JButton) (event.getSource())).getText()) {
+                case "+":
+                    result = firstText + secondText;
+                    break;
+                case "-":
+                    result = firstText - secondText;
+                    break;
+                case "*":
+                    result = firstText * secondText;
+                    break;
+                case "/":
+                    if (secondText != 0) {
+                        result = firstText / secondText;
+                        break;
+                    }
+                default:
+                    resultField.setText("Undefined operation!");
+                    return;
+            }
+            if (Double.isNaN(result)) {
+                resultField.setText("Disallowed operation!");
+            } else {
 
 
-*/
+                resultField.setText(String.format(Locale.US, "%.4f", result));
+            }
+
+        } catch (NumberFormatException ex) {
+            resultField.setText("Invalid operand!");
+        }
+    }
+
+}
