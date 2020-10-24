@@ -51,13 +51,13 @@ import javax.swing.JPanel;
             try {
                 switch (type) {
                     case CROSS:
-                        ims[y][x] = ImageIO.read(new File("img\\cross1.jpg"));
+                        ims[y][x] = ImageIO.read(new File("cross1.jpg"));
                         break;
                     case CIRCLE:
-                        ims[y][x] = ImageIO.read(new File("img\\circle1.jpg"));
+                        ims[y][x] = ImageIO.read(new File("circle1.jpg"));
                         break;
                     case EMPTY:
-                        ims[y][x] = ImageIO.read(new File("img\\поле51.jpg"));
+                        ims[y][x] = ImageIO.read(new File("поле51.jpg"));
                         break;
 
                 }
