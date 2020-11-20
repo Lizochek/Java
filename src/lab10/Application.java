@@ -25,7 +25,8 @@ public class Application {
             System.err.println("Введеный путь некорректный");
             return;
         }
-        long size=0;
+        long  size=0;
+        long x=1000000000;
         Queue<File> q = new PriorityQueue<File>();
         q.add(f);
         while(!q.isEmpty()){
@@ -36,8 +37,29 @@ public class Application {
                 else size+=i.length();
             }
         }
-        System.out.println(size);
-        Logger.log("Размер папки D:\\Games составляет 56,6 Гб");
+        if(size>0 && size<10000){
+            System.out.println("Размер папки "+path+" составляет " +size+" байт");
+            Logger.log("Размер папки "+path+" составляет " +size+" байт");
+        }
+        else if(size>=100 && size<1000000) {
+            double value = size / Math.pow(2, 10);
+            String result = String.format("%.1f", value);
+            System.out.println("Размер папки "+path+" составляет " +result+" Кб");
+            Logger.log("Размер папки "+path+" составляет " +result+" Кб");
+        }
+        else if(size>=1000000 && size< 999999999){
+            double value1 = size/Math.pow(2,20);
+            String result1 = String.format("%.1f",value1);
+            System.out.println("Размер папки "+path+" составляет " +result1+" Мб");
+            Logger.log("Размер папки "+path+" составляет " +result1+" Мб");
+        }
+        else {
+            double value1 = size/Math.pow(2,30);
+            String result1 = String.format("%.1f",value1);
+            System.out.println("Размер папки "+path+" составляет " +result1+" Гб");
+            Logger.log("Размер папки "+path+" составляет " +size/Math.pow(2,30)+" Гб");
+        }
+
     }
     public static void duplicateFolder(){
         Scanner sc = new Scanner(System.in);
