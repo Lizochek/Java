@@ -37,17 +37,17 @@ public class Application {
                 else size+=i.length();
             }
         }
-        if(size>0 && size<10000){
+        if(size< (1<<10)){
             System.out.println("Размер папки "+path+" составляет " +size+" байт");
             Logger.log("Размер папки "+path+" составляет " +size+" байт");
         }
-        else if(size>=100 && size<1000000) {
+        else if(size< (1<<20)) {
             double value = size / Math.pow(2, 10);
             String result = String.format("%.1f", value);
             System.out.println("Размер папки "+path+" составляет " +result+" Кб");
             Logger.log("Размер папки "+path+" составляет " +result+" Кб");
         }
-        else if(size>=1000000 && size< 999999999){
+        else if(size< (1<<30)){
             double value1 = size/Math.pow(2,20);
             String result1 = String.format("%.1f",value1);
             System.out.println("Размер папки "+path+" составляет " +result1+" Мб");
@@ -74,7 +74,10 @@ public class Application {
          path = sc.nextLine();
         Logger.log("Введен путь2: " + path);
         File f2 = new File(path);
-        if(!f2.exists() || !f2.isDirectory()) {
+        if(!f2.exists() ){
+            f2.mkdir();
+        }
+        if( !f2.isDirectory()) {
             Logger.log("Введеный путь некорректный");
             System.err.println("Введеный путь некорректный");
             return;
