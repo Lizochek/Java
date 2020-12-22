@@ -17,6 +17,8 @@ public class MyArrayList {
         toDoList.add(val);
     }
     public void add(int pos,String val) throws IndexOutOfBoundsException{
+       // if(pos>=toDoList.size()) toDoList.add(val);
+       // else
         toDoList.add( pos, val);
     }
     public void edit(int pos,String val) throws IndexOutOfBoundsException{

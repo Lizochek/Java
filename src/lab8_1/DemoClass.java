@@ -46,6 +46,7 @@ public class DemoClass {
                        break;
                }
            }catch (IndexOutOfBoundsException ex) {
+               if(instruction.compareTo("ADD")!=0)
                scanner.nextLine();
                System.err.println(" Index out of range");
            }

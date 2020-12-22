@@ -26,7 +26,7 @@ public class Generator {
         return carNumbs;
    }
     private void gen(int p,String s){
-        if(carNumbs.size() > 5e6) return;
+        if(carNumbs.size() > 10e6) return;
         if(p>6 ){
             carNumbs.add(s);
             return;
